@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from pymongo.errors import ConnectionError
+# from pymongo.errors import ConnectionError
 import time
 
 def connect_to_mongo():
@@ -11,9 +11,10 @@ def connect_to_mongo():
             # Test the connection
             client.admin.command('ping')
             print("Connected to MongoDB!")
-        except ConnectionError:
+        except Exception(e):
             # Connection failed; wait and retry
             print("Failed to connect to MongoDB. Retrying in 5 seconds...")
+            print(e)
             time.sleep(5)  # Wait for 5 seconds before retrying
     return client
 
